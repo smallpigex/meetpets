@@ -1,0 +1,8 @@
+.gradle/2.14.1/taskArtifacts/cache.properties.lock
+.gradle/2.14.1/taskArtifacts/fileHashes.bin
+.gradle/2.14.1/taskArtifacts/fileSnapshots.bin
+.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin
+.gradle/2.14.1/taskArtifacts/taskArtifacts.bin
+.settings/org.eclipse.buildship.core.prefs
+bin/Library.class
+bin/LibraryTest.class
