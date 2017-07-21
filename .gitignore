@@ -6,3 +6,7 @@
 .settings/org.eclipse.buildship.core.prefs
 bin/Library.class
 bin/LibraryTest.class
+bin/app/WebApplication.class
+bin/app/controller/smapleController.class
+bin/app/model/User.class
+bin/app/repository/UserRepository.class
