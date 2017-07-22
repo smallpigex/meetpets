@@ -7,22 +7,20 @@ import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  
-    private String id;
+    private String fbid;
     
     private String firstName;
     private String lastName;
     private String email;
-    private String homeID;
     private String description;
     
-    public User(String firstName, String lastName, String email, 
-        String homeID, String description){
+    public User(String fbid,String firstName, String lastName, String email, String description){
+      this.fbid = fbid;
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
-      this.homeID = homeID;
       this.description = description;
     }
     
@@ -30,12 +28,14 @@ public class User {
       
     }
     
-    public String getId() {
-      return id;
+    public String getFbid() {
+      return fbid;
     }
-    public void setId(String id) {
-      this.id = id;
+
+    public void setFbid(String fbid) {
+      this.fbid = fbid;
     }
+
     public String getFirstName() {
       return firstName;
     }
@@ -53,12 +53,6 @@ public class User {
     }
     public void setEmail(String email) {
       this.email = email;
-    }
-    public String getHomeID() {
-      return homeID;
-    }
-    public void setHomeID(String homeID) {
-      this.homeID = homeID;
     }
     public String getDescription() {
       return description;
