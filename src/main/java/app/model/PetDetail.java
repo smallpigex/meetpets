@@ -33,6 +33,10 @@ public class PetDetail {
 	  this.type = type;
 	  
 	}
+	
+	public PetDetail(){
+	  
+	};
 
   public String getId() {
     return id;
