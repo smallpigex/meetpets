@@ -19,10 +19,19 @@ public class PetDetail {
 	private String pic_url1;
 	private String pic_url2;
 	private String pic_url3;
-	private int type;
+	private String video_url;
+	public String getVideo_url() {
+    return video_url;
+  }
+
+  public void setVideo_url(String video_url) {
+    this.video_url = video_url;
+  }
+
+  private int type;
 	
 	public PetDetail(String homeId, String name, String address, String description, String picUrl1,
-	    String picUrl2, String picUrl3, int type){
+	    String picUrl2, String picUrl3, String video_url, int type){
 	  this.phome_id = homeId;
 	  this.name = name;
 	  this.address = address;
@@ -30,6 +39,7 @@ public class PetDetail {
 	  this.pic_url1 = picUrl1;
 	  this.pic_url2 = picUrl2;
 	  this.pic_url3 = picUrl3;
+	  this.video_url = video_url;
 	  this.type = type;
 	  
 	}
@@ -109,7 +119,5 @@ public class PetDetail {
   public void setType(int type) {
     this.type = type;
   }
-	
-	
 	
 }

@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
 
 @Entity
 @Table(name="pethome")
@@ -12,6 +13,7 @@ public class PetHome {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  
 	private String id;
+    @Null
 	private String name;
 	private String lat;
 	private String lng;
