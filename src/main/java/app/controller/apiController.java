@@ -1,7 +1,5 @@
 package app.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,8 +51,8 @@ public class apiController {
   public @ResponseBody String petDetail(@RequestParam String phome_id, @RequestParam String name,
       @RequestParam String address, @RequestParam(required=false) String description, 
       @RequestParam(required=false) String pic_url1, @RequestParam(required=false) String pic_url2,
-      @RequestParam(required=false) String pic_url3, @RequestParam String type){
-    PetDetail petDetail = new PetDetail(phome_id, name, address, description, pic_url1, pic_url2, pic_url3, Integer.valueOf(type));
+      @RequestParam(required=false) String pic_url3, @RequestParam(required=false) String video_url, @RequestParam String type){
+    PetDetail petDetail = new PetDetail(phome_id, name, address, description, pic_url1, pic_url2, pic_url3, video_url, Integer.valueOf(type));
     petDetailRepository.save(petDetail);
     return "pethomeP success.";
   }
@@ -65,7 +63,7 @@ public class apiController {
   }
   
   @GetMapping("/petHome")
-  public List<Object> petHome(){
+  public Iterable<PetHome> petHome(){
     return petHomeRepository.findAllNoNullName();
   }
   
