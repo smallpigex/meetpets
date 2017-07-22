@@ -13,19 +13,24 @@ public class PetHome {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  
 	private String id;
 	private String name;
-	private String latitude;
-	private String logtitude;
+	private String lat;
+	private String lng;
 	private String description;
 	private String uid;
 	
-	public PetHome(String name, String latitude, String logtitude, String description, String uid){
+	public PetHome(String name, String lat, String lng, String description, String uid){
 	  this.name = name;
-	  this.latitude = latitude;
-	  this.logtitude = logtitude;
+	  this.lat = lat;
+	  this.lng = lng;
 	  this.description = description;
 	  this.uid = uid;
 	  
 	}
+	
+	public PetHome(){
+	  
+	};
+	
 	public String getId() {
 		return id;
 	}
@@ -38,18 +43,6 @@ public class PetHome {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-	public String getLogtitude() {
-		return logtitude;
-	}
-	public void setLogtitude(String logtitude) {
-		this.logtitude = logtitude;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -61,6 +54,22 @@ public class PetHome {
   }
   public void setUid(String uid) {
     this.uid = uid;
+  }
+
+  public String getLat() {
+    return lat;
+  }
+
+  public void setLat(String lat) {
+    this.lat = lat;
+  }
+
+  public String getLng() {
+    return lng;
+  }
+
+  public void setLng(String lng) {
+    this.lng = lng;
   }
 	
 }

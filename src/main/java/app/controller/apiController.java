@@ -42,18 +42,20 @@ public class apiController {
   }
   
   @PostMapping("/petHome")
-  public @ResponseBody String petHomeP(@RequestParam String name, @RequestParam String latitude,
-      @RequestParam String logtitude, @RequestParam(required=false) String description, @RequestParam(required=false) String uid){
-    PetHome petHome = new PetHome(name, latitude, logtitude, description, uid);
+  public @ResponseBody String petHome(@RequestParam String name, @RequestParam String lat,
+      @RequestParam String lng, @RequestParam(required=false) String description, @RequestParam(required=false) String uid){
+    PetHome petHome = new PetHome(name, lat, lng, description, uid);
     petHomeRepository.save(petHome);
     return "pethomeP success.";
   }
   
   @PostMapping("/petDetail")
-  public @ResponseBody String petDetailP(@RequestParam String name, @RequestParam String latitude,
-      @RequestParam String logtitude, @RequestParam(required=false) String description, @RequestParam(required=false) String uid){
-    PetHome petHome = new PetHome(name, latitude, logtitude, description, uid);
-    petHomeRepository.save(petHome);
+  public @ResponseBody String petDetail(@RequestParam String phome_id, @RequestParam String name,
+      @RequestParam String address, @RequestParam(required=false) String description, 
+      @RequestParam(required=false) String pic_url1, @RequestParam(required=false) String pic_url2,
+      @RequestParam(required=false) String pic_url3, @RequestParam String type){
+    PetDetail petDetail = new PetDetail(phome_id, name, address, description, pic_url1, pic_url2, pic_url3, Integer.valueOf(type));
+    petDetailRepository.save(petDetail);
     return "pethomeP success.";
   }
   
@@ -63,7 +65,7 @@ public class apiController {
   }
   
   @GetMapping("/petHome")
-  public List<PetHome> petHome(){
+  public List<Object> petHome(){
     return petHomeRepository.findAllNoNullName();
   }
   
