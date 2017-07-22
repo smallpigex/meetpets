@@ -1,12 +1,14 @@
 package app.model;
 
 import javax.persistence.Entity;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  
     private String id;
     
     private String firstName;
@@ -15,9 +17,8 @@ public class User {
     private String homeID;
     private String description;
     
-    public User(String id, String firstName, String lastName, String email, 
+    public User(String firstName, String lastName, String email, 
         String homeID, String description){
-      this.id = id;
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;

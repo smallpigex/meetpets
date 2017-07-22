@@ -1,9 +1,16 @@
 package app.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="petDetail")
 public class PetDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  
 	private String id;
 	private String homeId;
 	private String name;
@@ -12,7 +19,21 @@ public class PetDetail {
 	private String picUrl1;
 	private String picUrl2;
 	private String picUrl3;
-
+	private int type;
+	
+	public PetDetail(String homeId, String name, String address, String description, String picUrl1,
+	    String picUrl2, String picUrl3, int type){
+	  this.homeId = homeId;
+	  this.name = name;
+	  this.address = address;
+	  this.description = description;
+	  this.picUrl1 = picUrl1;
+	  this.picUrl2 = picUrl2;
+	  this.picUrl3 = picUrl3;
+	  this.type = type;
+	  
+	}
+	
 	public String getId() {
 		return id;
 	}
@@ -76,4 +97,12 @@ public class PetDetail {
 	public void setPicUrl3(String picUrl3) {
 		this.picUrl3 = picUrl3;
 	}
+
+  public int getType() {
+    return type;
+  }
+
+  public void setType(int type) {
+    this.type = type;
+  }
 }
