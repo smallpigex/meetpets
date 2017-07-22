@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.repository.PetDetailRepository;
+import app.repository.PetHomeRepository;
+import app.model.PetHome;
 import app.model.User;
 import app.repository.UserRepository;
 
@@ -16,18 +19,37 @@ import app.repository.UserRepository;
 public class apiController {
   
   @Autowired
-  private UserRepository userRepository;
+  public UserRepository userRepository;
+  
+  @Autowired
+  public PetDetailRepository petDetailRepository;
+  
+  @Autowired
+  public PetHomeRepository petHomeRepository;
   
   @PostMapping("/signup")
-  public @ResponseBody String addNewUser(@RequestParam String id, @RequestParam String firstName, @RequestParam String lastName,
+  public @ResponseBody String addNewUser(@RequestParam String firstName, @RequestParam String lastName,
       @RequestParam String email, @RequestParam(required=false) String homeID, @RequestParam(required=false) String description) {
-    User n = new User(id, firstName, lastName, email, homeID, description);
+    User user = new User(firstName, lastName, email, homeID, description);
     
-    userRepository.save(n);
+    userRepository.save(user);
     return "Saved";
   }
   
-//  @GetMapping("/pethome")
-//  public 
+  @PostMapping("/petHome")
+  public @ResponseBody String petHomeP(@RequestParam String name, @RequestParam String latitude,
+      @RequestParam String logtitude, @RequestParam(required=false) String description, @RequestParam(required=false) String uid){
+    PetHome petHome = new PetHome(name, latitude, logtitude, description, uid);
+    petHomeRepository.save(petHome);
+    return "pethomeP success.";
+  }
+  
+  @PostMapping("/petDetail")
+  public @ResponseBody String petDetailP(@RequestParam String name, @RequestParam String latitude,
+      @RequestParam String logtitude, @RequestParam(required=false) String description, @RequestParam(required=false) String uid){
+    PetHome petHome = new PetHome(name, latitude, logtitude, description, uid);
+    petHomeRepository.save(petHome);
+    return "pethomeP success.";
+  }
   
 }
