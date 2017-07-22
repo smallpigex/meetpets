@@ -7,96 +7,96 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="petDetail")
+@Table(name="petdetail")
 public class PetDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  
 	private String id;
-	private String homeId;
+	private String phome_id;
 	private String name;
 	private String address;
 	private String description;
-	private String picUrl1;
-	private String picUrl2;
-	private String picUrl3;
+	private String pic_url1;
+	private String pic_url2;
+	private String pic_url3;
 	private int type;
 	
 	public PetDetail(String homeId, String name, String address, String description, String picUrl1,
 	    String picUrl2, String picUrl3, int type){
-	  this.homeId = homeId;
+	  this.phome_id = homeId;
 	  this.name = name;
 	  this.address = address;
 	  this.description = description;
-	  this.picUrl1 = picUrl1;
-	  this.picUrl2 = picUrl2;
-	  this.picUrl3 = picUrl3;
+	  this.pic_url1 = picUrl1;
+	  this.pic_url2 = picUrl2;
+	  this.pic_url3 = picUrl3;
 	  this.type = type;
 	  
 	}
-	
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public String getHomeId() {
-		return homeId;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public void setHomeId(String homeId) {
-		this.homeId = homeId;
-	}
+  public String getPhome_id() {
+    return phome_id;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public void setPhome_id(String phome_id) {
+    this.phome_id = phome_id;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public String getAddress() {
-		return address;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+  public String getAddress() {
+    return address;
+  }
 
-	public String getDescription() {
-		return description;
-	}
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+  public String getDescription() {
+    return description;
+  }
 
-	public String getPicUrl1() {
-		return picUrl1;
-	}
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-	public void setPicUrl1(String picUrl1) {
-		this.picUrl1 = picUrl1;
-	}
+  public String getPic_url1() {
+    return pic_url1;
+  }
 
-	public String getPicUrl2() {
-		return picUrl2;
-	}
+  public void setPic_url1(String pic_url1) {
+    this.pic_url1 = pic_url1;
+  }
 
-	public void setPicUrl2(String picUrl2) {
-		this.picUrl2 = picUrl2;
-	}
+  public String getPic_url2() {
+    return pic_url2;
+  }
 
-	public String getPicUrl3() {
-		return picUrl3;
-	}
+  public void setPic_url2(String pic_url2) {
+    this.pic_url2 = pic_url2;
+  }
 
-	public void setPicUrl3(String picUrl3) {
-		this.picUrl3 = picUrl3;
-	}
+  public String getPic_url3() {
+    return pic_url3;
+  }
+
+  public void setPic_url3(String pic_url3) {
+    this.pic_url3 = pic_url3;
+  }
 
   public int getType() {
     return type;
@@ -105,4 +105,7 @@ public class PetDetail {
   public void setType(int type) {
     this.type = type;
   }
+	
+	
+	
 }
