@@ -2,6 +2,7 @@ package app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,4 +73,8 @@ public class apiController {
     return petDetailRepository.findAll();
   }
   
+  @GetMapping("/petDetail/{id}")
+  public Iterable<PetDetail> petDetailById(@PathVariable("id") String id){
+    return petDetailRepository.findById(id);
+  }
 }
