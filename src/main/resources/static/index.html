@@ -276,19 +276,16 @@
 
     $.extend({
       getHospital:()=>{
-          let list=[{
-              lat:'25.069744',
-              lng:'121.521209',
-              address:'臺中市大甲區中山路一段825-6號',
-              tel:'037-460943',
-              name:'協和動物醫院'
-          },{
-              lat:'25.070744',
-              lng:'121.511209',
-              address:'三峽區復興路83號',
-              tel:'02-1111-2222',
-              name:'全科動物醫院'
-          }]
+    	    let list = []
+    	    $.ajax({
+    	    	   url: '/api/hospital',
+    	    	   contentType: 'applicaton/json',
+    	    	   async: false,
+    	    	   success: function(data) {
+    	    		   list = data;
+    	    	   }
+    	    })
+          
           return list
 
       },
