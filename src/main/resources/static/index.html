@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <title>iPet-幫寵物找個家</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="iPet-幫寵物找個家">
+  <meta name="description" content="iPet-幫寵物找個家">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+  <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/fb-all.js"></script>
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#222" />
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#222" />
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#222" />
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+    #map {
+      height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 85%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .controls {
+      margin-top: 10px;
+      border: 1px solid transparent;
+      border-radius: 2px 0 0 2px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      height: 32px;
+      outline: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #pac-input {
+      background-color: #fff;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+      margin-left: 12px;
+      padding: 0 11px 0 13px;
+      text-overflow: ellipsis;
+      width: 300px;
+    }
+
+    #pac-input:focus {
+      border-color: #4d90fe;
+    }
+
+    .pac-container {
+      font-family: Roboto;
+    }
+
+    #type-selector {
+      color: #fff;
+      background-color: #4d90fe;
+      padding: 5px 11px 0px 11px;
+    }
+
+    #type-selector label {
+      font-family: Roboto;
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    #target {
+      width: 345px;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+  <div id="fb-root"></div>
+  <script type="text/javascript" src="https://connect.facebook.net/zh_TW/all.js"></script>
+  <script>
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+      console.log('statusChangeCallback');
+      console.log(response);
+      // The response object is returned with a status field that lets the
+      // app know the current login status of the person.
+      // Full docs on the response object can be found in the documentation
+      // for FB.getLoginStatus().
+      if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        var uid = response.authResponse.userID;
+        $.uid = uid;
+        testAPI();
+      } else {
+        // The person is not logged into your app or we are unable to tell.
+        document.getElementById('status').innerHTML = '請登入' +
+          'Facebook!';
+      }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+      });
+    }
+
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '839647102853434',
+        cookie: true,  // enable cookies to allow the server to access 
+        // the session
+        xfbml: true,  // parse social plugins on this page
+        version: 'v2.8' // use graph api version 2.8
+      });
+
+      // Now that we've initialized the JavaScript SDK, we call 
+      // FB.getLoginStatus().  This function gets the state of the
+      // person visiting this page and can return one of three states to
+      // the callback you provide.  They can be:
+      //
+      // 1. Logged into your app ('connected')
+      // 2. Logged into Facebook, but not your app ('not_authorized')
+      // 3. Not logged into Facebook and can't tell if they are logged into
+      //    your app or not.
+      //
+      // These three cases are handled in the callback function.
+
+      FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+      });
+
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+    function testAPI() {
+      console.log('Welcome!  Fetching your information.... ');
+      FB.api('/me', function (response) {
+        console.log('成功登入，歡迎：' + response.name);
+        document.getElementById('status').innerHTML =
+          '感謝您的登入，' + response.name + '!!!';
+      });
+    }
+
+  </script>
+  <div id="fb-root"></div>
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.10&appId=839647102853434";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!--導航欄-->
+  <nav class="well-sm navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <img src="./ipet_logob.png" width="100">
+      </div>
+       <div class="collapse navbar-collapse" id="myNavbar" style="margin-top: 20px">
+      <!-- <ul class="nav navbar-nav" > -->
+        
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">新增</button>
+          <input id="pac-input" class="controls" type="text" placeholder="輸入您要找的地標或地址">
+        
+      <!-- </ul> -->
+      <ul class="nav navbar-nav navbar-right">
+        <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true"
+          data-use-continue-as="true"></div>
+        <font color="#FFFFFF">
+          <div id="status"></div>
+        </font>
+      </ul>
+    </div>
+    </div>
+  </nav>
+  <div id="map"></div>
+  <script>
+    function initAutocomplete() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 25.069744, lng: 121.521209 },
+        zoom: 16,
+        mapTypeId: 'roadmap'
+      });
+
+      // Create the search box and link it to the UI element.
+      var input = document.getElementById('pac-input');
+      var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      document.getElementById('pac-input').addEventListener('keypress', function (event) {
+        if (event.keyCode == 13) {
+          event.preventDefault();
+        }
+      });
+
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function () {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      var markers = [];
+      // Listen for the event fired when the user selects a prediction and retrieve
+      // more details for that place.
+      searchBox.addListener('places_changed', function () {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function (marker) {
+          marker.setMap(null);
+        });
+        markers = [];
+
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function (place) {
+          if (!place.geometry) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+          
+
+          // Create a marker for each place.
+          markers.push(new google.maps.Marker({
+            map: map,
+            icon: icon,
+            title: place.name,
+            position: place.geometry.location
+          }));
+
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        map.fitBounds(bounds);
+      });
+      $.setMakers(map);
+    }
+
+    $.extend({
+      getHospital:()=>{
+          let list=[{
+              lat:'25.069744',
+              lng:'121.521209',
+              address:'臺中市大甲區中山路一段825-6號',
+              tel:'037-460943',
+              name:'協和動物醫院'
+          },{
+              lat:'25.070744',
+              lng:'121.511209',
+              address:'三峽區復興路83號',
+              tel:'02-1111-2222',
+              name:'全科動物醫院'
+          }]
+          return list
+
+      },
+      setMakers: function (map) {
+        var image = 'place.png';
+          var icon = {
+            url: image,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 37)
+          };
+        let list = $.getHospital()
+        for(let o of list){
+          //console.log(o)
+          let myLatlng = new google.maps.LatLng(o['lat'], o['lng'])
+          let marker = new google.maps.Marker({
+            position: myLatlng,
+            title: o['name'],
+            map:map,
+            icon:icon
+          })
+          let contentString ='<div font-family="cwTeXHei">'+ 
+                                '<p>'+'<font color="blue" size="5">'+o['name']+'</font>'+'</p>'+
+                                '<p>'+'<font size="3">'+o['address']+'</font>'+'</p>'+
+                                '<p>'+'<font size="3">'+o['tel']+'</font>'+'</p>'+
+                             '</div>'
+          let infowindow = new google.maps.InfoWindow({
+                            content: contentString,
+                            maxWidth: 200
+                          });
+              marker.addListener('click', function() {
+                          infowindow.open(map, marker);
+                        });            
+
+
+        }  
+      },
+      savePetHome:() =>{
+        let data = {
+                address: $('#recipient-address').val(),
+                name: $('#recipient-address').val(),
+                tel: $('#recipient-phone').val(),
+                description: $('#message-text').val(),
+                uid : $.uid
+         }
+
+        
+
+        let map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            mapTypeId: 'roadmap'
+          });
+        let geocoder = new google.maps.Geocoder();  
+          geocoder.geocode( { 'address': data.address }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              map.setCenter(results[0].geometry.location);
+
+              data.lat=results[0].geometry.location.lat();
+              data.lng=results[0].geometry.location.lng();
+
+              var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+              });
+
+              let contentString ='<div font-family="cwTeXHei" id="div_5566" >'+ 
+                                '<p>'+'<font color="blue" size="5">'+data['name']+'</font>'+'</p>'+
+                                '<p>'+'<font size="3">'+data['address']+'</font>'+'</p>'+
+                                '<p>'+'<font size="3">'+data['tel']+'</font>'+'</p>'+
+                                '<p>'+'<font size="3">'+data['description']+'</font>'+
+                                '<div name="img_div"></div>'+
+                                '<button style="float:right" type="button" class="btn btn-default" data-toggle="modal" data-target="#petModal" data-whatever="@mdo" name="addPet" >新增寵物</button>'+
+                                '</p>'+
+                             '</div>'
+              let infowindow = new google.maps.InfoWindow({
+                            content: contentString,
+                            maxWidth: 200
+                          });
+                  marker.addListener('click', function() {
+                          infowindow.open(map, marker);
+                        });            
+                  
+                  
+
+              
+            } else {
+              alert("失敗, 原因: " + status);
+            }
+          });
+
+          
+      },
+      savePet:()=>{
+          let data = {
+                name :$('#pet-name').val(),
+                type: $('#pet-type').val(),
+                description : $('#pet-description').val(),
+                pic_url1 :$('#pic_url1').val(),
+                pic_url2 :$('#pic_url2').val(),
+                pic_url3 :$('#pic_url3').val(),
+                video_url :$('#video_url').val()
+          }
+          let icon_name = data['type'] =='1' ? 'dog.png' :'cat.png'
+
+          let img_dom = $('<img src='+icon_name+' data-toggle="modal" data-target="#petDetailModal" data-whatever="@mdo" />')
+          
+          img_dom.click(()=>{
+              let $petDetailModal = $('#petDetailModal')
+              $petDetailModal.find('[name=pet-name]').text(data.name)
+              $petDetailModal.find('#1a').html(data.description)
+              $petDetailModal.find('[name=url1]').attr('src',data.pic_url1)
+              $petDetailModal.find('[name=url2]').attr('src',data.pic_url2)
+              $petDetailModal.find('[name=url3]').attr('src',data.pic_url3)
+              $petDetailModal.find('[name=video_url]').attr('src',data.video_url)
+
+          })
+          $('#div_5566').find('[name=img_div]').append(img_dom)
+      },
+      initMod :() =>{
+          $('#save').click(()=>{
+              $.savePetHome()      
+          })
+          $('#pet-save').click(()=>{
+              $.savePet()
+          });
+      }
+    })
+
+    $(()=>{
+      $.initMod()
+    })
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtAt9j25zitaSIxRdqmIjc8VT6Po1oBI8&libraries=places&callback=initAutocomplete"
+    async defer></script>
+
+
+  <!--底部-->
+  <footer class="footer">
+    <div class="container text-center">
+      <span class="text-muted">iPet-幫寵物找個家.</span>
+    </div>
+  </footer>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">新增中途之家</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">姓名：</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-address" class="form-control-label">地址：</label>
+            <input type="text" class="form-control" id="recipient-address">
+          </div>
+          <div class="form-group">
+            <label for="recipient-phone" class="form-control-label">電話：</label>
+            <input type="text" class="form-control" id="recipient-phone">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">訊息：</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+        <button type="button" class="btn btn-primary" id="save" data-dismiss="modal">確定新增</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="petModal" tabindex="-1" role="dialog" aria-labelledby="petModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="petModalLabel">新增寵物</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">姓名：</label>
+            <input type="text" class="form-control" id="pet-name">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">種類：</label>
+            <select id="pet-type" class="form-control" ><option value="0">貓</option><option value="1">狗</option></select>
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">說明：</label>
+            <input type="text" class="form-control" id="pet-description">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">圖片1：</label>
+            <input type="text" class="form-control" id="pic_url1">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">圖片2：</label>
+            <input type="text" class="form-control" id="pic_url2">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">圖片3：</label>
+            <input type="text" class="form-control" id="pic_url3">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">影片：</label>
+            <input type="text" class="form-control" id="video_url">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+        <button type="button" class="btn btn-primary" id="pet-save" data-dismiss="modal">確定新增</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="petDetailModal" tabindex="-1" role="dialog" aria-labelledby="petDetailModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" name="pet-name" >瑁瑁</h1>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#1a" data-toggle="tab">資訊</a></li>
+        <li role="presentation"><a href="#2a" data-toggle="tab">圖片1</a></li>
+        <li role="presentation"><a href="#3a" data-toggle="tab">圖片2</a></li>
+        <li role="presentation"><a href="#4a" data-toggle="tab">圖片3</a></li>
+        <li role="presentation"><a href="#5a" data-toggle="tab">影片</a></li>
+        </ul>
+      <div class="tab-content clearfix">
+        <div class="tab-pane active" id="1a">
+          <h3></h3>
+          <h3>被丟包在便利商店前, 瘦巴巴的很可憐,親人, 愛玩, 可愛, 活潑,</h3>
+          <br/><br/>
+          <img src="https://seniorplanet.org/wp-content/uploads/2016/02/facebook-share-icon.jpg" width="100">
+        </div>
+        <div class="tab-pane" id="2a">
+          <img name="url1" src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163704.jpg">
+        </div>
+        <div class="tab-pane" id="3a">
+          <img  name="url2" src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163724.jpg">
+        </div>
+        <div class="tab-pane" id="4a">
+          <img  name="url3"src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163704.jpg">
+        </div>
+        <div class="tab-pane" id="5a">
+          <video width="580" height="480" controls preload="none">
+            <source name="video_url" src="https://s3-us-west-1.amazonaws.com/pamilyme/anchorUpload/videos/59739fb8cd59cf2643b977e8.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
