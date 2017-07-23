@@ -2,94 +2,95 @@
 <html lang="zh-TW">
 
 <head>
-  <title>iPet-幫寵物找個家</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="iPet-幫寵物找個家">
-  <meta name="description" content="iPet-幫寵物找個家">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
-  <link href="css/sticky-footer-navbar.css" rel="stylesheet">
-  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/fb-all.js"></script>
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#222" />
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#222" />
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="#222" />
-  <style>
-    /* Always set the map height explicitly to define the size of the div
+<title>iPet-幫寵物找個家</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="iPet-幫寵物找個家">
+<meta name="description" content="iPet-幫寵物找個家">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css"
+	type="text/css" media="screen" />
+<link href="css/sticky-footer-navbar.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/fb-all.js"></script>
+<!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="#222" />
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="#222" />
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="#222" />
+<style>
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+#map {
+	height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 85%;
+	margin: 0;
+	padding: 0;
+}
 
-    #map {
-      height: 100%;
-    }
-    /* Optional: Makes the sample page fill the window. */
+.controls {
+	margin-top: 10px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
 
-    html,
-    body {
-      height: 85%;
-      margin: 0;
-      padding: 0;
-    }
+#pac-input {
+	background-color: #fff;
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 300;
+	margin-left: 12px;
+	padding: 0 11px 0 13px;
+	text-overflow: ellipsis;
+	width: 300px;
+}
 
-    .controls {
-      margin-top: 10px;
-      border: 1px solid transparent;
-      border-radius: 2px 0 0 2px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      height: 32px;
-      outline: none;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
+#pac-input:focus {
+	border-color: #4d90fe;
+}
 
-    #pac-input {
-      background-color: #fff;
-      font-family: Roboto;
-      font-size: 15px;
-      font-weight: 300;
-      margin-left: 12px;
-      padding: 0 11px 0 13px;
-      text-overflow: ellipsis;
-      width: 300px;
-    }
+.pac-container {
+	font-family: Roboto;
+}
 
-    #pac-input:focus {
-      border-color: #4d90fe;
-    }
+#type-selector {
+	color: #fff;
+	background-color: #4d90fe;
+	padding: 5px 11px 0px 11px;
+}
 
-    .pac-container {
-      font-family: Roboto;
-    }
+#type-selector label {
+	font-family: Roboto;
+	font-size: 13px;
+	font-weight: 300;
+}
 
-    #type-selector {
-      color: #fff;
-      background-color: #4d90fe;
-      padding: 5px 11px 0px 11px;
-    }
-
-    #type-selector label {
-      font-family: Roboto;
-      font-size: 13px;
-      font-weight: 300;
-    }
-
-    #target {
-      width: 345px;
-    }
-  </style>
+#target {
+	width: 345px;
+}
+</style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-  <div id="fb-root"></div>
-  <script type="text/javascript" src="https://connect.facebook.net/zh_TW/all.js"></script>
-  <script>
+	<div id="fb-root"></div>
+	<script type="text/javascript"
+		src="https://connect.facebook.net/zh_TW/all.js"></script>
+	<script>
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
       console.log('statusChangeCallback');
@@ -167,8 +168,8 @@
     }
 
   </script>
-  <div id="fb-root"></div>
-  <script>
+	<div id="fb-root"></div>
+	<script>
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
@@ -177,36 +178,40 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
-  <!--導航欄-->
-  <nav class="well-sm navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <img src="./ipet_logob.png" width="100">
-      </div>
-       <div class="collapse navbar-collapse" id="myNavbar" style="margin-top: 20px">
-      <!-- <ul class="nav navbar-nav" > -->
-        
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">新增</button>
-          <input id="pac-input" class="controls" type="text" placeholder="輸入您要找的地標或地址">
-        
-      <!-- </ul> -->
-      <ul class="nav navbar-nav navbar-right">
-        <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true"
-          data-use-continue-as="true"></div>
-        <font color="#FFFFFF">
-          <div id="status"></div>
-        </font>
-      </ul>
-    </div>
-    </div>
-  </nav>
-  <div id="map"></div>
-  <script>
+	<!--導航欄-->
+	<nav class="well-sm navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<img src="./ipet_logob.png" width="100">
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar"
+				style="margin-top: 20px">
+				<!-- <ul class="nav navbar-nav" > -->
+
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#exampleModal" data-whatever="@mdo">新增</button>
+				<input id="pac-input" class="controls" type="text"
+					placeholder="輸入您要找的地標或地址">
+
+				<!-- </ul> -->
+				<ul class="nav navbar-nav navbar-right">
+					<div class="fb-login-button" data-max-rows="1" data-size="medium"
+						data-button-type="login_with" data-show-faces="false"
+						data-auto-logout-link="true" data-use-continue-as="true"></div>
+					<font color="#FFFFFF">
+						<div id="status"></div>
+					</font>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="map"></div>
+	<script>
     function initAutocomplete() {
       var map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 25.069744, lng: 121.521209 },
@@ -341,40 +346,83 @@
           });
         let geocoder = new google.maps.Geocoder();  
           geocoder.geocode( { 'address': data.address }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              map.setCenter(results[0].geometry.location);
+        	  if (status == google.maps.GeocoderStatus.OK) {
 
-              data.lat=results[0].geometry.location.lat();
-              data.lng=results[0].geometry.location.lng();
+                  map.setCenter(results[0].geometry.location);
 
-              var marker = new google.maps.Marker({
-                  map: map,
-                  position: results[0].geometry.location
-              });
 
-              let contentString ='<div font-family="cwTeXHei" id="div_5566" >'+ 
-                                '<p>'+'<font color="blue" size="5">'+data['name']+'</font>'+'</p>'+
-                                '<p>'+'<font size="3">'+data['address']+'</font>'+'</p>'+
-                                '<p>'+'<font size="3">'+data['tel']+'</font>'+'</p>'+
-                                '<p>'+'<font size="3">'+data['description']+'</font>'+
-                                '<div name="img_div"></div>'+
-                                '<button style="float:right" type="button" class="btn btn-default" data-toggle="modal" data-target="#petModal" data-whatever="@mdo" name="addPet" >新增寵物</button>'+
-                                '</p>'+
-                             '</div>'
-              let infowindow = new google.maps.InfoWindow({
-                            content: contentString,
-                            maxWidth: 200
-                          });
-                  marker.addListener('click', function() {
-                          infowindow.open(map, marker);
-                        });            
-                  
-                  
 
-              
-            } else {
-              alert("失敗, 原因: " + status);
-            }
+                  data.lat=results[0].geometry.location.lat();
+
+                  data.lng=results[0].geometry.location.lng();
+
+                  var image = 'MapHouseHeart.png';
+
+                  var icon = {
+
+                  url: image,
+
+                  size: new google.maps.Size(71, 71),
+
+                  origin: new google.maps.Point(0, 0),
+
+                  anchor: new google.maps.Point(17, 34),
+
+                  scaledSize: new google.maps.Size(70,55)
+
+              };
+
+
+
+                  var marker = new google.maps.Marker({
+
+                      map: map,
+
+                      position: results[0].geometry.location,
+
+                      icon:icon
+
+                  });
+
+
+
+                  let contentString ='<div font-family="cwTeXHei" id="div_5566" >'+ 
+
+                                    '<p>'+'<font color="blue" size="5">'+data['name']+'</font>'+'</p>'+
+
+                                    '<p>'+'<font size="3">'+data['address']+'</font>'+'</p>'+
+
+                                    '<p>'+'<font size="3">'+data['tel']+'</font>'+'</p>'+
+
+                                    '<p>'+'<font size="3">'+data['description']+'</font>'+
+
+                                    '<div name="img_div"></div>'+
+
+                                    '<button style="float:right" type="button" class="btn btn-default" data-toggle="modal" data-target="#petModal" data-whatever="@mdo" name="addPet" >新增寵物</button>'+
+
+                                    '</p>'+
+
+                                 '</div>'
+
+                  let infowindow = new google.maps.InfoWindow({
+
+                                content: contentString,
+
+                                maxWidth: 200
+
+                              });
+
+                      marker.addListener('click', function() {
+
+                              infowindow.open(map, marker);
+
+                            });            
+
+                } else {
+
+                  alert("失敗, 原因: " + status);
+
+                }
           });
 
           
@@ -420,154 +468,175 @@
     })
 
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtAt9j25zitaSIxRdqmIjc8VT6Po1oBI8&libraries=places&callback=initAutocomplete"
-    async defer></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtAt9j25zitaSIxRdqmIjc8VT6Po1oBI8&libraries=places&callback=initAutocomplete"
+		async defer></script>
 
 
-  <!--底部-->
-  <footer class="footer">
-    <div class="container text-center">
-      <span class="text-muted">iPet-幫寵物找個家.</span>
-    </div>
-  </footer>
+	<!--底部-->
+	<footer class="footer">
+		<div class="container text-center">
+			<span class="text-muted">iPet-幫寵物找個家.</span>
+		</div>
+	</footer>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">新增中途之家</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">姓名：</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="recipient-address" class="form-control-label">地址：</label>
-            <input type="text" class="form-control" id="recipient-address">
-          </div>
-          <div class="form-group">
-            <label for="recipient-phone" class="form-control-label">電話：</label>
-            <input type="text" class="form-control" id="recipient-phone">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="form-control-label">訊息：</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-        <button type="button" class="btn btn-primary" id="save" data-dismiss="modal">確定新增</button>
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">新增中途之家</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">姓名：</label>
+							<input type="text" class="form-control" id="recipient-name">
+						</div>
+						<div class="form-group">
+							<label for="recipient-address" class="form-control-label">地址：</label>
+							<input type="text" class="form-control" id="recipient-address">
+						</div>
+						<div class="form-group">
+							<label for="recipient-phone" class="form-control-label">電話：</label>
+							<input type="text" class="form-control" id="recipient-phone">
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="form-control-label">訊息：</label>
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">關閉</button>
+					<button type="button" class="btn btn-primary" id="save"
+						data-dismiss="modal">確定新增</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<div class="modal fade" id="petModal" tabindex="-1" role="dialog" aria-labelledby="petModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="petModalLabel">新增寵物</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">姓名：</label>
-            <input type="text" class="form-control" id="pet-name">
-          </div>
+	<div class="modal fade" id="petModal" tabindex="-1" role="dialog"
+		aria-labelledby="petModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="petModalLabel">新增寵物</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">姓名：</label>
+							<input type="text" class="form-control" id="pet-name">
+						</div>
 
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">種類：</label>
-            <select id="pet-type" class="form-control" ><option value="0">貓</option><option value="1">狗</option></select>
-          </div>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">種類：</label>
+							<select id="pet-type" class="form-control"><option
+									value="0">貓</option>
+								<option value="1">狗</option></select>
+						</div>
 
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">說明：</label>
-            <input type="text" class="form-control" id="pet-description">
-          </div>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">說明：</label>
+							<input type="text" class="form-control" id="pet-description">
+						</div>
 
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">圖片1：</label>
-            <input type="text" class="form-control" id="pic_url1">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">圖片2：</label>
-            <input type="text" class="form-control" id="pic_url2">
-          </div>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">圖片1：</label>
+							<input type="text" class="form-control" id="pic_url1">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">圖片2：</label>
+							<input type="text" class="form-control" id="pic_url2">
+						</div>
 
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">圖片3：</label>
-            <input type="text" class="form-control" id="pic_url3">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">影片：</label>
-            <input type="text" class="form-control" id="video_url">
-          </div>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">圖片3：</label>
+							<input type="text" class="form-control" id="pic_url3">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="form-control-label">影片：</label>
+							<input type="text" class="form-control" id="video_url">
+						</div>
 
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-        <button type="button" class="btn btn-primary" id="pet-save" data-dismiss="modal">確定新增</button>
-      </div>
-    </div>
-  </div>
-</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">關閉</button>
+					<button type="button" class="btn btn-primary" id="pet-save"
+						data-dismiss="modal">確定新增</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<div class="modal fade" id="petDetailModal" tabindex="-1" role="dialog" aria-labelledby="petDetailModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" name="pet-name" >瑁瑁</h1>
-      </div>
-      <div class="modal-body">
-        <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="#1a" data-toggle="tab">資訊</a></li>
-        <li role="presentation"><a href="#2a" data-toggle="tab">圖片1</a></li>
-        <li role="presentation"><a href="#3a" data-toggle="tab">圖片2</a></li>
-        <li role="presentation"><a href="#4a" data-toggle="tab">圖片3</a></li>
-        <li role="presentation"><a href="#5a" data-toggle="tab">影片</a></li>
-        </ul>
-      <div class="tab-content clearfix">
-        <div class="tab-pane active" id="1a">
-          <h3></h3>
-          <h3>被丟包在便利商店前, 瘦巴巴的很可憐,親人, 愛玩, 可愛, 活潑,</h3>
-          <br/><br/>
-          <img src="https://seniorplanet.org/wp-content/uploads/2016/02/facebook-share-icon.jpg" width="100">
-        </div>
-        <div class="tab-pane" id="2a">
-          <img name="url1" src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163704.jpg">
-        </div>
-        <div class="tab-pane" id="3a">
-          <img  name="url2" src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163724.jpg">
-        </div>
-        <div class="tab-pane" id="4a">
-          <img  name="url3"src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163704.jpg">
-        </div>
-        <div class="tab-pane" id="5a">
-          <video width="580" height="480" controls preload="none">
-            <source name="video_url" src="https://s3-us-west-1.amazonaws.com/pamilyme/anchorUpload/videos/59739fb8cd59cf2643b977e8.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
-        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button> -->
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal fade" id="petDetailModal" tabindex="-1" role="dialog"
+		aria-labelledby="petDetailModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title" name="pet-name">瑁瑁</h1>
+				</div>
+				<div class="modal-body">
+					<ul class="nav nav-pills">
+						<li role="presentation" class="active"><a href="#1a"
+							data-toggle="tab">資訊</a></li>
+						<li role="presentation"><a href="#2a" data-toggle="tab">圖片1</a></li>
+						<li role="presentation"><a href="#3a" data-toggle="tab">圖片2</a></li>
+						<li role="presentation"><a href="#4a" data-toggle="tab">圖片3</a></li>
+						<li role="presentation"><a href="#5a" data-toggle="tab">影片</a></li>
+					</ul>
+					<div class="tab-content clearfix">
+						<div class="tab-pane active" id="1a">
+							<h3></h3>
+							<h3>被丟包在便利商店前, 瘦巴巴的很可憐,親人, 愛玩, 可愛, 活潑,</h3>
+							<br />
+							<br /> <img
+								src="https://seniorplanet.org/wp-content/uploads/2016/02/facebook-share-icon.jpg"
+								width="100">
+						</div>
+						<div class="tab-pane" id="2a">
+							<img name="url1"
+								src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163704.jpg">
+						</div>
+						<div class="tab-pane" id="3a">
+							<img name="url2"
+								src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163724.jpg">
+						</div>
+						<div class="tab-pane" id="4a">
+							<img name="url3"
+								src="http://www.meetpets.org.tw/files_meetpets/imagecache/normal/2017-07-21_163704.jpg">
+						</div>
+						<div class="tab-pane" id="5a">
+							<video width="580" height="480" controls preload="none">
+								<source name="video_url"
+									src="https://s3-us-west-1.amazonaws.com/pamilyme/anchorUpload/videos/59739fb8cd59cf2643b977e8.mp4"
+									type="video/mp4">
+								Your browser does not support the video tag.
+							</video>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">關閉</button>
+					<!-- <button type="button" class="btn btn-primary" data-dismiss="modal">關閉</button> -->
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 
