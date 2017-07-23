@@ -277,6 +277,8 @@ html, body {
         map.fitBounds(bounds);
       });
       $.setMakers(map);
+      $.setPetHome(map);
+      $.gMap =map;
     }
 
     $.extend({
@@ -293,6 +295,66 @@ html, body {
           
           return list
 
+      },
+      getPetHome:()=>{
+    	  	let list = []
+  	    $.ajax({
+  	    	   url: '/api/petHome',
+  	    	   contentType: 'applicaton/json',
+  	    	   async: false,
+  	    	   success: function(data) {
+  	    		   list = data;
+  	    		   //console.log(list.length)
+  	    	   }
+  	    })
+        
+        return list	
+      },
+      setPetHome :(map) =>{
+    	  		let list = $.getPetHome()
+    	  		for(let data of list){
+    	  	                  var image = 'MapHouseHeart.png';
+    	  	                  var icon = {
+    	  	                  url: image,
+    	  	                  size: new google.maps.Size(71, 71),
+    	  	                  origin: new google.maps.Point(0, 0),
+    	  	                  anchor: new google.maps.Point(17, 34),
+    	  	                  scaledSize: new google.maps.Size(70,55)
+
+    	  	              };
+						//console.log(data['lat']+':'+ data['lng']);
+						  let myLatlng = new google.maps.LatLng(data['lat'], data['lng'])
+    	  	                  let marker = new google.maps.Marker({
+    	  	                      map: map,
+    	  	                      position: myLatlng,
+    	  	                    	  title: data['name'],
+    	  	                      icon:icon
+
+    	  	                  });
+						 //console.log(marker);	
+
+    	  	                  let contentString ='<div font-family="cwTeXHei" id="div_5566" >'+ 
+    	  	                                    '<p>'+'<font color="blue" size="5">'+data['name']+'</font>'+'</p>'+
+    	 
+    	  	                                    '<p>'+'<font size="3">'+(data['description'] || '') +'</font>'+
+    	  	                                    '<div name="img_div">'+
+    	  	                                    '<img src="cat.png" data-toggle="modal" data-target="#petDetailModal" data-whatever="@mdo" />'+
+    	  	                                    '</div>'+
+    	  	                                    '</p>'+
+    	  	                                 '</div>'
+
+    	  	                  let infowindow = new google.maps.InfoWindow({
+    	  	                                content: contentString,
+    	  	                                maxWidth: 200
+    	  	                              });
+
+    	  	                      marker.addListener('click', function() {
+    	  	                              infowindow.open(map, marker);
+    	  	                            });
+    	  	                 //let img_dom = $('<img src="dog.png" data-toggle="modal" data-target="#petDetailModal" data-whatever="@mdo" />')
+						//$('#div_5566').find('[name=img_div]').append(img_dom)	
+    	  	                
+    	  		}
       },
       setMakers: function (map) {
         var image = 'place.png';
@@ -338,12 +400,13 @@ html, body {
                 uid : $.uid
          }
 
-        
-
+        let map = $.gMap;
+		/*
         let map = new google.maps.Map(document.getElementById('map'), {
             zoom: 16,
             mapTypeId: 'roadmap'
-          });
+          });*/
+        
         let geocoder = new google.maps.Geocoder();  
           geocoder.geocode( { 'address': data.address }, function(results, status) {
         	  if (status == google.maps.GeocoderStatus.OK) {
